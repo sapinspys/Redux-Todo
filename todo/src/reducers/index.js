@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions';
 
 const { SHOW_ALL } = VisibilityFilters
@@ -66,9 +68,19 @@ function visibilityFilter(state = SHOW_ALL, action) {
 // reducers. Each reducer managers its own part of the
 // global state!
 
-function todoApp(state = {}, action) {
-    return {
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        todos: todos(state.todos, action)
-    }
-}
+// function todoApp(state = {}, action) {
+//     return {
+//         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+//         todos: todos(state.todos, action)
+//     }
+// }
+
+// We can take it a step further and perform the same 
+// logic as above using combineReducers HOC
+
+const todoApp = combineReducers({
+    visibilityFilter,
+    todos
+})
+
+export default todoApp
