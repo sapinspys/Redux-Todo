@@ -1,20 +1,26 @@
 import { combineReducers } from 'redux';
 
-import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions';
+import { ADD_TODO, 
+    TOGGLE_TODO, 
+    SET_VISIBILITY_FILTER, 
+    VisibilityFilters } from './actions';
 
 const { SHOW_ALL } = VisibilityFilters
 
-const initialState = {
-    visibilityFilter: VisibilityFilters.SHOW_ALL,
-    todos: []
-}
+// REDUCERS HANDLE LOGIC DICTATED BY ACTIONS
 
-// REDUCER HANDLES LOGIC DICTATED BY ACTIONS
+// INI STATE ONLY NEEDED WITHOUT PROPER REDUCER COMPOSITION
 
-// The todoApp func gives the todos func only the slice 
-// of the state that needs to be updated
+// const initialState = {
+//     visibilityFilter: VisibilityFilters.SHOW_ALL,
+//     todos: []
+// }
 
 // REDUCER COMPOSITION
+
+// The todoApp function gives the todos function only  
+// the slice of the state that needs to be updated. 
+// Same deal with the visibilityFilter function.
 
 function todos(state = [], action) {
     switch (action.type) {
@@ -45,6 +51,8 @@ function visibilityFilter(state = SHOW_ALL, action) {
     }
 }
 
+// AFTER EXTRACTING ADD_TODO and TOGGLE_TODO:
+
 // function todoApp(state = initialState, action) {
 //     switch (action.type) {
 //         case SET_VISIBILITY_FILTER:
@@ -64,11 +72,10 @@ function visibilityFilter(state = SHOW_ALL, action) {
 //     }
 // }
 
-// Turns to the following after extracting independent 
-// reducers. Each reducer managers its own part of the
-// global state!
+// After extracting all independent reducers, each reducer
+// managers its own part of the global state!
 
-// function todoApp(state = {}, action) {
+// export default function todoApp(state = {}, action) {
 //     return {
 //         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
 //         todos: todos(state.todos, action)
@@ -76,7 +83,7 @@ function visibilityFilter(state = SHOW_ALL, action) {
 // }
 
 // We can take it a step further and perform the same 
-// logic as above using combineReducers HOC
+// logic as above using combineReducers.
 
 const todoApp = combineReducers({
     visibilityFilter,
