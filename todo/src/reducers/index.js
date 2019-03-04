@@ -5,3 +5,13 @@ const initialState = {
     todos: []
 }
 
+// REDUCER HANDLES LOGIC DICTATED BY ACTIONS
+
+function todoApp(state = initialState, action) {
+    switch (action.type) {
+        case SET_VISIBILITY_FILTER:
+            return Object.assign({}, state, {
+                VisibilityFilter: action.filter
+            })
+    }
+}
