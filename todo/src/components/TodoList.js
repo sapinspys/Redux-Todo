@@ -75,7 +75,10 @@ class TodoList extends Component {
                     onClick = {() => this.props.setVisibilityFilter(SHOW_ACTIVE)}>
                     Active
                 </button>
-                <button onClick={()=>console.log(this.props.visibilityFilter)}>What's my state?</button>
+                <button 
+                    onClick={()=>console.log(this.props.todos, this.props.visibilityFilter)}>
+                    What's my state?
+                </button>
             </div>
         )
     }
