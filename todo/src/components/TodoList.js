@@ -7,29 +7,48 @@ import { toggleTodo, setVisibilityFilter, VisibilityFilters } from '../actions';
 const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters
 
 class TodoList extends Component {
+
     handleToggle = (index) => (e) => {
         // Calling Action Creator:
         this.props.toggleTodo(index);
 
-        if (e.target.dataset.flag === 'false') {
-            e.target.style.textDecoration = 'line-through';
-            e.target.setAttribute('data-flag', 'true');
-        } else {
-            e.target.style.textDecoration = 'none';
-            e.target.setAttribute('data-flag', 'false');
-        }
+        // NON-FUNCTIONAL...
+        // if (this.props.todos[index].completed === false) {
+        //     e.target.style.textDecoration = 'line-through';
+        // } else {
+        //     e.target.style.textDecoration = 'none';
+        // }
     }
 
     renderTodoItems() {
-        return this.props.todos.map((todo, index) => {
-            return (
-                <li onClick = {this.handleToggle(index)}
-                    key={index}
-                    data-flag='false'>
-                    {todo.text}    
-                </li>
-            )
-        })
+        if (this.props.visibilityFilter === SHOW_ALL) {
+            return this.props.todos.map((todo, index) => {
+                return (
+                    <li onClick = {this.handleToggle(index)}
+                        key={index}>
+                        {todo.text}    
+                    </li>
+                )
+            })
+        } else if (this.props.visibilityFilter === SHOW_COMPLETED) {
+            return this.props.todos.filter(todo => todo.completed === true).map((todo, index) => {
+                return (
+                    <li onClick = {this.handleToggle(index)}
+                        key={index}>
+                        {todo.text}    
+                    </li>
+                )
+            })
+        } else {
+            return this.props.todos.filter(todo => todo.completed === false).map((todo, index) => {
+                return (
+                    <li onClick = {this.handleToggle(index)}
+                        key={index}>
+                        {todo.text}    
+                    </li>
+                )
+            })
+        }
     }
 
     render () {
