@@ -7,7 +7,7 @@ class TodoList extends Component {
     renderTodoItems() {
         return this.props.todos.map((todo, index) => {
             return (
-                <li onClick = {() => this.props.toggleTodo(todo)}
+                <li onClick = {() => this.props.toggleTodo(todo, index)}
                     key={index}>
                     {todo.text}    
                 </li>
