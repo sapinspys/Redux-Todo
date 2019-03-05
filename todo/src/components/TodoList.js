@@ -77,13 +77,12 @@ class TodoList extends Component {
     render () {
         return (
           <div className="todoContainer">
-            <p>Visibility: {this.props.visibilityFilter}</p>
             <div>
                 <ul className="list">
                     {this.renderTodoItems()}
                 </ul>
             </div>
-            <div className="btns">
+            <div className="buttonContainer">
                 <button 
                     onClick = {() => this.props.setVisibilityFilter(SHOW_ALL)}>
                     Show All

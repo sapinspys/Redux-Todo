@@ -9,17 +9,18 @@
 }
 
 .todoContainer {
-    background: $boxes;
-
-    p {
-        margin: 0;
-    }
+    background: url('../img/redux-icon.png') center, $boxes;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
     .list {
         list-style-type: none;
         padding-left: 0;
-        border-right: 1px solid white;
         border-left: 1px solid white;
+        border-right: 1px solid white;
 
 
         div {
@@ -29,9 +30,9 @@
             align-items: center;
 
             li {
-                width: 345px;
                 margin: 10px 0;
                 margin-right: 5px;
+                width: 260px;
             }
 
             button {
@@ -44,7 +45,7 @@
         }
     }
 
-    .btns {
+    .buttonContainer {
         background: $darkText;
         padding: 10px 0;
         border-radius:  0 0 5px 5px;
