@@ -1,2 +1,7 @@
 @import '../variables.scss';
 
+.todoForm {
+    border-bottom: 1px solid $darkText;
+    background: $lightText;
+    padding: 5px 0;
+}
