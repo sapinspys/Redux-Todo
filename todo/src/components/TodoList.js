@@ -5,7 +5,9 @@ import { toggleTodo } from '../actions';
 
 class TodoList extends Component {
     handleToggle = (index) => (e) => {
+        // Calling Action Creator:
         this.props.toggleTodo(index);
+        
         if (e.target.dataset.flag === 'false') {
             e.target.style.textDecoration = 'line-through';
             e.target.setAttribute('data-flag', 'true');

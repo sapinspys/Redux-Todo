@@ -13,7 +13,10 @@ class TodoForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addTodo(this.state.todo)
+        
+        // Calling Action Creator:
+        this.props.addTodo(this.state.todo) 
+        
         this.setState({
             todo: '' 
         })
