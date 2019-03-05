@@ -27,9 +27,9 @@ class TodoForm extends Component {
 
     render () {
         return (
-            <div onSubmit = {this.handleSubmit}
-                className='form-container'>
-                <form autoComplete='off'>
+            <div className='form-container'>
+                <form onSubmit = {this.handleSubmit} 
+                    autoComplete='off'>
                     <input type="text"
                         name="todo"
                         value={this.state.todo}

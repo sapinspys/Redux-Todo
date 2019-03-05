@@ -4,11 +4,23 @@ import { connect } from 'react-redux';
 import { toggleTodo } from '../actions';
 
 class TodoList extends Component {
+    handleToggle = (index) => (e) => {
+        this.props.toggleTodo(index);
+        if (e.target.dataset.flag === 'false') {
+            e.target.style.textDecoration = 'line-through';
+            e.target.setAttribute('data-flag', 'true');
+        } else {
+            e.target.style.textDecoration = 'none';
+            e.target.setAttribute('data-flag', 'false');
+        }
+    }
+
     renderTodoItems() {
         return this.props.todos.map((todo, index) => {
             return (
-                <li onClick = {() => this.props.toggleTodo(index)}
-                    key={index}>
+                <li onClick = {this.handleToggle(index)}
+                    key={index}
+                    data-flag='false'>
                     {todo.text}    
                 </li>
             )
