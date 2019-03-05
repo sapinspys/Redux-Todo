@@ -1,0 +1,7 @@
+[data-completed='true'] {
+    text-decoration: line-through;
+}
+
+[data-completed='false'] {
+    text-decoration: none;
+}

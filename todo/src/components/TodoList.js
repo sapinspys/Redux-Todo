@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+import './TodoList.css';
+
 import { connect } from 'react-redux';
 import { toggleTodo, setVisibilityFilter, VisibilityFilters } from '../actions';
 
-// Must deconstruct before using this
+// Must deconstruct before using visibility filter action types
 const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters
 
 class TodoList extends Component {
@@ -12,7 +14,8 @@ class TodoList extends Component {
         // Calling Action Creator:
         this.props.toggleTodo(index);
 
-        // NON-FUNCTIONAL...
+        // NON-FUNCTIONAL... 
+        // MOVED TO EXTERNAL CSS, USING DATA ATTRIBUTES
         // if (this.props.todos[index].completed === false) {
         //     e.target.style.textDecoration = 'line-through';
         // } else {
@@ -25,7 +28,8 @@ class TodoList extends Component {
             return this.props.todos.map((todo, index) => {
                 return (
                     <li onClick = {this.handleToggle(index)}
-                        key={index}>
+                        key={index}
+                        data-completed={this.props.todos[index].completed}>
                         {todo.text}    
                     </li>
                 )
@@ -34,7 +38,8 @@ class TodoList extends Component {
             return this.props.todos.filter(todo => todo.completed === true).map((todo, index) => {
                 return (
                     <li onClick = {this.handleToggle(index)}
-                        key={index}>
+                        key={index}
+                        data-completed="true">
                         {todo.text}    
                     </li>
                 )
@@ -43,7 +48,8 @@ class TodoList extends Component {
             return this.props.todos.filter(todo => todo.completed === false).map((todo, index) => {
                 return (
                     <li onClick = {this.handleToggle(index)}
-                        key={index}>
+                        key={index}
+                        data-completed="false">
                         {todo.text}    
                     </li>
                 )
