@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
+import { connect } from 'react-redux';
 import { toggleTodo } from '../actions';
 
 class TodoList extends Component {
     renderTodoItems() {
         return this.props.todos.map((todo, index) => {
             return (
-                <li onClick = {() => this.props.toggleTodo(todo, index)}
+                <li onClick = {() => this.props.toggleTodo(index)}
                     key={index}>
                     {todo.text}    
                 </li>
