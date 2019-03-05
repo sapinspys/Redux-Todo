@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodo, setVisibilityFilter, VisibilityFilters } from '../actions';
 
+// Must deconstruct before using this
+const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters
+
 class TodoList extends Component {
     handleToggle = (index) => (e) => {
         // Calling Action Creator:
@@ -36,11 +39,18 @@ class TodoList extends Component {
                     {this.renderTodoItems()}
                 </ul>
                 <button 
-                    onClick = {this.props.setVisibilityFilter(this.props.VisibilityFilters.SHOW_ALL)}>
+                    onClick = {() => this.props.setVisibilityFilter(SHOW_ALL)}>
                     Show All
                 </button>
-                <button>Completed</button>
-                <button>Active</button>
+                <button 
+                    onClick = {() => this.props.setVisibilityFilter(SHOW_COMPLETED)}>
+                    Completed
+                </button>
+                <button
+                    onClick = {() => this.props.setVisibilityFilter(SHOW_ACTIVE)}>
+                    Active
+                </button>
+                <button onClick={()=>console.log(this.props.visibilityFilter)}>What's my state?</button>
             </div>
         )
     }
@@ -48,7 +58,8 @@ class TodoList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.todos
+        todos: state.todos,
+        visibilityFilter: state.visibilityFilter
     }
 }
 
