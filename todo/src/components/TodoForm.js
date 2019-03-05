@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import "./TodoForm.scss";
+
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
 
 class TodoForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo: '' 
+            todo: "" 
         }
     }
 
@@ -18,7 +20,7 @@ class TodoForm extends Component {
         this.props.addTodo(this.state.todo) 
 
         this.setState({
-            todo: '' 
+            todo: "" 
         })
     }
 
@@ -30,13 +32,14 @@ class TodoForm extends Component {
 
     render () {
         return (
-            <form onSubmit = {this.handleSubmit} 
-                autoComplete='off'>
+            <form className="todoForm"
+                onSubmit={this.handleSubmit} 
+                autoComplete="off">
                 <input type="text"
                     name="todo"
                     value={this.state.todo}
                     onChange={this.handleChange}
-                    placeholder='...Todo'/>
+                    placeholder="...Todo"/>
                 <button>Add Todo</button>
             </form>
         )

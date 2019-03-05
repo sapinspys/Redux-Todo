@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './App.scss';
+
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 

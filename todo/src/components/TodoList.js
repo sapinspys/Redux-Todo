@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './TodoList.css';
+import './TodoList.scss';
 
 import { connect } from 'react-redux';
 import { toggleTodo, setVisibilityFilter, VisibilityFilters, deleteTodo } from '../actions';
