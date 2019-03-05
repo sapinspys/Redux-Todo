@@ -19,6 +19,7 @@
         border-left: 1px solid white;
         border-right: 1px solid white;
         background: url('../img/redux-icon.png') center, $boxes;
+        background-size: 350px, auto;
         background-repeat: no-repeat;
         min-height: 422px;
         margin: 0;
@@ -26,7 +27,7 @@
 
         div {
             border-bottom: 1px solid white;
-            background: rgba(255,255,255,0.6);
+            background: rgba(240,240,240,0.8);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,6 +37,7 @@
                 margin-right: 5px;
                 width: 260px;
                 border-radius: 5px;
+                font-size: 1.5rem;
             }
 
             button {
