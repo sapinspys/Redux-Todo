@@ -24,5 +24,5 @@ export function setVisibilityFilter(filter) {
 }
 
 export function deleteTodo(text) {
-    return { type: ADD_TODO, text }
+    return { type: DELETE_TODO, text }
 }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './TodoList.css';
 
 import { connect } from 'react-redux';
-import { toggleTodo, setVisibilityFilter, VisibilityFilters } from '../actions';
+import { toggleTodo, setVisibilityFilter, VisibilityFilters, deleteTodo } from '../actions';
 
 // Must deconstruct before using visibility filter action types
 const { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } = VisibilityFilters
@@ -27,31 +27,48 @@ class TodoList extends Component {
         if (this.props.visibilityFilter === SHOW_ALL) {
             return this.props.todos.map((todo, index) => {
                 return (
-                    <li onClick = {this.handleToggle(index)}
-                        key={index}
-                        data-completed={this.props.todos[index].completed}>
-                        {todo.text}    
-                    </li>
+                    <div key={index}>
+                        <li onClick = {this.handleToggle(index)}
+                            data-completed={this.props.todos[index].completed}>
+                            {todo.text}    
+                        </li>
+                        <button 
+                            onClick={() => this.props.deleteTodo(todo.text)}>
+                            x
+                        </button>
+                    </div>
                 )
             })
         } else if (this.props.visibilityFilter === SHOW_COMPLETED) {
             return this.props.todos.filter(todo => todo.completed === true).map((todo, index) => {
                 return (
-                    <li onClick = {this.handleToggle(index)}
-                        key={index}
-                        data-completed="true">
-                        {todo.text}    
-                    </li>
+                    <div key={index}>
+                        <li onClick = {this.handleToggle(index)}
+                            key={index}
+                            data-completed="true">
+                            {todo.text}    
+                        </li>
+                            <button 
+                            onClick={() => this.props.deleteTodo(todo.text)}>
+                            x
+                        </button>
+                    </div>
                 )
             })
         } else {
             return this.props.todos.filter(todo => todo.completed === false).map((todo, index) => {
                 return (
-                    <li onClick = {this.handleToggle(index)}
-                        key={index}
-                        data-completed="false">
-                        {todo.text}    
-                    </li>
+                    <div key={index}>
+                        <li onClick = {this.handleToggle(index)}
+                            key={index}
+                            data-completed="false">
+                            {todo.text}    
+                        </li>
+                        <button 
+                            onClick={() => this.props.deleteTodo(todo.text)}>
+                            x
+                        </button>
+                    </div>
                 )
             })
         }
@@ -60,6 +77,7 @@ class TodoList extends Component {
     render () {
         return (
             <div>
+                <p>Visibility: {this.props.visibilityFilter}</p>
                 <ul>
                     {this.renderTodoItems()}
                 </ul>
@@ -91,4 +109,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { toggleTodo, setVisibilityFilter, VisibilityFilters })(TodoList);
+export default connect(mapStateToProps, { toggleTodo, setVisibilityFilter, VisibilityFilters, deleteTodo })(TodoList);
