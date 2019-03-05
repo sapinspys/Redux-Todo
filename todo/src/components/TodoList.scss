@@ -20,12 +20,13 @@
         border-right: 1px solid white;
         background: url('../img/redux-icon.png') center, $boxes;
         background-repeat: no-repeat;
-        min-height: 300px;
+        min-height: 422px;
         margin: 0;
 
 
         div {
             border-bottom: 1px solid white;
+            background: rgba(255,255,255,0.6);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,7 +35,6 @@
                 margin: 10px 0;
                 margin-right: 5px;
                 width: 260px;
-                background: rgba(255,255,255,0.6);
                 border-radius: 5px;
             }
 
