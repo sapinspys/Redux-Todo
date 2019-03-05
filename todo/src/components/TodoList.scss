@@ -2,10 +2,12 @@
 
 [data-completed='true'] {
     text-decoration: line-through;
+    color: $lightText;
 }
 
 [data-completed='false'] {
     text-decoration: none;
+    color: $header;
 }
 
 .todoContainer {
@@ -18,7 +20,7 @@
         padding-left: 0;
         border-left: 1px solid $lightText;
         border-right: 1px solid $lightText;
-        background: url('../img/redux-icon.png') center, $boxes;
+        background: url('../img/redux-icon.png') center, $content;
         background-size: 350px, auto;
         background-repeat: no-repeat;
         min-height: 422px;
@@ -38,7 +40,6 @@
                 width: 260px;
                 border-radius: 5px;
                 font-size: 1.5rem;
-                color: $lightText;
             }
 
             button {
@@ -52,8 +53,9 @@
     }
 
     .buttonContainer {
-        background: $darkText;
+        background: $header;
         padding: 10px 0;
         border-radius:  0 0 5px 5px;
+        border-top: 1px solid  white;
     }
 }
