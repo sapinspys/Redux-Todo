@@ -1,7 +1,41 @@
+@import '../variables.scss';
+
 [data-completed='true'] {
     text-decoration: line-through;
 }
 
 [data-completed='false'] {
     text-decoration: none;
+}
+
+.todoContainer {
+    background: $boxes;
+
+    p {
+        margin: 0;
+    }
+
+    .list {
+        list-style-type: none;
+        padding-left: 0;
+
+        div {
+            border-bottom: 1px solid white;
+            display: flex;
+            justify-content: center;
+
+            li {
+                width: 400px;
+                margin: 10px 0;
+            }
+        }
+        
+        div:last-child {
+            border: none;
+        }
+    }
+
+    .btns {
+        background: $darkText;
+    }
 }
