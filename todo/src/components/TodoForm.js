@@ -16,7 +16,7 @@ class TodoForm extends Component {
         
         // Calling Action Creator:
         this.props.addTodo(this.state.todo) 
-        
+
         this.setState({
             todo: '' 
         })
@@ -30,18 +30,15 @@ class TodoForm extends Component {
 
     render () {
         return (
-            <div className='form-container'>
-                <form onSubmit = {this.handleSubmit} 
-                    autoComplete='off'>
-                    <input type="text"
-                        name="todo"
-                        value={this.state.todo}
-                        onChange={this.handleChange}
-                        placeholder='...Todo'/>
-                    <button>Add Todo</button>
-                </form>
-                <button>Clear Completed</button>
-            </div>
+            <form onSubmit = {this.handleSubmit} 
+                autoComplete='off'>
+                <input type="text"
+                    name="todo"
+                    value={this.state.todo}
+                    onChange={this.handleChange}
+                    placeholder='...Todo'/>
+                <button>Add Todo</button>
+            </form>
         )
     }
 }
