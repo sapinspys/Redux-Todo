@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 
 import { ADD_TODO, 
     TOGGLE_TODO, 
-    SET_VISIBILITY_FILTER, 
+    SET_VISIBILITY_FILTER,
+    DELETE_TODO, 
     VisibilityFilters } from '../actions';
 
 const { SHOW_ALL } = VisibilityFilters
@@ -37,6 +38,8 @@ function todos(state = [], action) {
                     })
                 } return todo
             })
+        case DELETE_TODO:
+            return state.filter(todo => todo.text !== action.text);
         default:
             return state
     }
