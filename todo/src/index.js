@@ -5,14 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
+import { compose, applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
+import persistState from 'redux-localstorage';
 
 import rootReducer from './reducers';
 
+const enhancer = compose(
+    persistState(),
+    applyMiddleware(logger)
+)
+
 const store = createStore(
     rootReducer,
-    applyMiddleware(logger)
+    enhancer
 );
 
 ReactDOM.render(
