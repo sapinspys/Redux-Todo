@@ -29,7 +29,7 @@ class TodoList extends Component {
                 return (
                     <div key={index}>
                         <li onClick = {this.handleToggle(index)}
-                            data-completed={this.props.todos[index].completed}>
+                            data-completed={todo.completed}>
                             {todo.text}    
                         </li>
                         <button 
@@ -40,36 +40,38 @@ class TodoList extends Component {
                 )
             })
         } else if (this.props.visibilityFilter === SHOW_COMPLETED) {
-            return this.props.todos.filter(todo => todo.completed === true).map((todo, index) => {
-                return (
-                    <div key={index}>
-                        <li onClick = {this.handleToggle(index)}
-                            key={index}
-                            data-completed="true">
-                            {todo.text}    
-                        </li>
-                            <button 
-                            onClick={() => this.props.deleteTodo(todo.text)}>
-                            x
-                        </button>
-                    </div>
-                )
+            return this.props.todos.map((todo, index) => {
+                if (todo.completed === true) {
+                    return (
+                        <div key={index}>
+                            <li onClick = {this.handleToggle(index)}
+                                data-completed="true">
+                                {todo.text}    
+                            </li>
+                                <button 
+                                onClick={() => this.props.deleteTodo(todo.text)}>
+                                x
+                            </button>
+                        </div>
+                    )
+                }
             })
         } else {
-            return this.props.todos.filter(todo => todo.completed === false).map((todo, index) => {
-                return (
-                    <div key={index}>
-                        <li onClick = {this.handleToggle(index)}
-                            key={index}
-                            data-completed="false">
-                            {todo.text}    
-                        </li>
-                        <button 
-                            onClick={() => this.props.deleteTodo(todo.text)}>
-                            x
-                        </button>
-                    </div>
-                )
+            return this.props.todos.map((todo, index) => {
+                if (todo.completed === false) {
+                    return (
+                        <div key={index}>
+                            <li onClick = {this.handleToggle(index)}
+                                data-completed="false">
+                                {todo.text}    
+                            </li>
+                            <button 
+                                onClick={() => this.props.deleteTodo(todo.text)}>
+                                x
+                            </button>
+                        </div>
+                    )
+                }
             })
         }
     }
