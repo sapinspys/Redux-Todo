@@ -1,12 +1,14 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { ADD_TODO, 
-    TOGGLE_TODO, 
-    SET_VISIBILITY_FILTER,
-    DELETE_TODO, 
-    VisibilityFilters } from '../actions';
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  DELETE_TODO,
+  VisibilityFilters
+} from "../actions";
 
-const { SHOW_ALL } = VisibilityFilters
+const { SHOW_ALL } = VisibilityFilters;
 
 // REDUCERS HANDLE LOGIC DICTATED BY ACTIONS
 
@@ -19,39 +21,47 @@ const { SHOW_ALL } = VisibilityFilters
 
 // REDUCER COMPOSITION
 
-// The todoApp function gives the todos function only  
-// the slice of the state that needs to be updated. 
+// The todoApp function gives the todos function only
+// the slice of the state that needs to be updated.
 // Same deal with the visibilityFilter function.
 
+let count = 0;
+
 function todos(state = [], action) {
-    switch (action.type) {
-        case ADD_TODO:
-            return [...state, {
-                text: action.text,
-                completed: false
-            }]
-        case TOGGLE_TODO:
-            return state.map((todo, index) => {
-                if (index === action.index) {
-                    return Object.assign({}, todo, {
-                        completed: !todo.completed
-                    })
-                } return todo
-            })
-        case DELETE_TODO:
-            return state.filter(todo => todo.text !== action.text);
-        default:
-            return state
-    }
+  switch (action.type) {
+    case ADD_TODO:
+      ++count;
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false,
+          id: count
+        }
+      ];
+    case TOGGLE_TODO:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          });
+        }
+        return todo;
+      });
+    case DELETE_TODO:
+      return state.filter(todo => todo.id !== action.id);
+    default:
+      return state;
+  }
 }
 
 function visibilityFilter(state = SHOW_ALL, action) {
-    switch (action.type) {
-        case SET_VISIBILITY_FILTER:
-            return action.filter
-        default:
-            return state
-    }
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter;
+    default:
+      return state;
+  }
 }
 
 // AFTER EXTRACTING ADD_TODO and TOGGLE_TODO:
@@ -85,12 +95,12 @@ function visibilityFilter(state = SHOW_ALL, action) {
 //     }
 // }
 
-// We can take it a step further and perform the same 
+// We can take it a step further and perform the same
 // logic as above using combineReducers.
 
 const todoApp = combineReducers({
-    visibilityFilter,
-    todos
-})
+  visibilityFilter,
+  todos
+});
 
-export default todoApp
+export default todoApp;

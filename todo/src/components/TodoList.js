@@ -17,35 +17,28 @@ class TodoList extends Component {
   handleToggle = index => e => {
     // Calling Action Creator:
     this.props.toggleTodo(index);
-
-    // NON-FUNCTIONAL...
-    // MOVED TO EXTERNAL CSS, USING DATA ATTRIBUTES
-    // if (this.props.todos[index].completed === false) {
-    //     e.target.style.textDecoration = 'line-through';
-    // } else {
-    //     e.target.style.textDecoration = 'none';
-    // }
   };
 
   renderTodoItems() {
-    let filteredTodos = this.props.todos;
-
-    if (this.props.visibilityFilter === SHOW_COMPLETED) {
-      filteredTodos = filteredTodos.filter(todo => todo.completed === true);
+    let filteredTodos = []
+    if (this.props.visibilityFilter === SHOW_ALL) {
+      filteredTodos = this.props.todos;
+    } else if (this.props.visibilityFilter === SHOW_COMPLETED) {
+      filteredTodos = this.props.todos.filter(todo => todo.completed === true);
     } else if (this.props.visibilityFilter === SHOW_ACTIVE) {
-      filteredTodos = filteredTodos.filter(todo => todo.completed === false);
+      filteredTodos = this.props.todos.filter(todo => todo.completed === false);
     } 
     
-    return filteredTodos.map((todo, index) => {
+    return filteredTodos.map(todo => {
       return (
-        <div key={index}>
+        <div key={todo.id}>
           <li
-            onClick={this.handleToggle(index)}
+            onClick={this.handleToggle(todo.id)}
             data-completed={todo.completed}
           >
             {todo.text}
           </li>
-          <button onClick={() => this.props.deleteTodo(todo.text)}>x</button>
+          <button onClick={() => this.props.deleteTodo(todo.id)}>x</button>
         </div>
       );
     });
